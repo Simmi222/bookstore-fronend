@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const AUTH_URL = import.meta.env.VITE_AUTH_URL || import.meta.env.VITE_API_URL || 'http://localhost:4001';
+
 const SignupForm = () => {
   // useState for form data
   const [formData, setFormData] = useState({
@@ -26,8 +28,8 @@ const SignupForm = () => {
     setLoading(true);
 
     try {
-      // Send POST request to http://localhost:4001/user/signup
-      const response = await axios.post('http://localhost:4001/user/signup', {
+  // Send POST request to signup endpoint
+  const response = await axios.post(`${AUTH_URL}/user/signup`, {
         fullName: formData.fullName,
         email: formData.email,
         password: formData.password

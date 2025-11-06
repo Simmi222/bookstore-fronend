@@ -23,9 +23,11 @@ function BookDetail() {
       return
     }
 
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
     const fetchBook = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/books/${id}`)
+        const response = await fetch(`${API_URL}/api/books/${id}`)
         const data = await response.json()
         
         if (data.success) {

@@ -10,8 +10,10 @@ function Freebook() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
         // Fetch books from MongoDB API
-        const response = await fetch('http://localhost:5001/api/books')
+        const response = await fetch(`${API_URL}/api/books`)
         const data = await response.json()
         
         if (data.success) {

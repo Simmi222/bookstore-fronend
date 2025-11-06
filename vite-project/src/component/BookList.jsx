@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
 const BookList = () => {
   // useState to define "book" state
   const [book, setBook] = useState([]);
@@ -14,8 +16,8 @@ const BookList = () => {
         setLoading(true);
         setError(null);
         
-        // Axios API call to fetch data from backend
-  const response = await axios.get('http://localhost:5001/api/books');
+    // Axios API call to fetch data from backend
+  const response = await axios.get(`${API_URL}/api/books`);
         
         // Store the response in state
         setBook(response.data.data || response.data);

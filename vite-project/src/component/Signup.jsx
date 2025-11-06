@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 import { useAuth } from '../context/AuthContext'
 
 function Signup() {
@@ -30,9 +32,9 @@ function Signup() {
 
     if (formData.name && formData.email && formData.password) {
       try {
-        // Send POST request using Axios to http://localhost:5001/user/signup
-        // Send data as JSON
-        const response = await axios.post('http://localhost:5001/user/signup', {
+  // Send POST request using Axios to signup endpoint
+  // Send data as JSON
+  const response = await axios.post(`${API_URL}/user/signup`, {
           fullName: formData.name,
           email: formData.email,
           password: formData.password

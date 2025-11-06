@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const AUTH_URL = import.meta.env.VITE_AUTH_URL || import.meta.env.VITE_API_URL || 'http://localhost:4001';
+
 const SimpleBookComponent = () => {
   // useState to define "book" state
   const [book, setBook] = useState([]);
@@ -9,8 +11,8 @@ const SimpleBookComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Axios API call to fetch data from "http://localhost:4001/book"
-        const response = await axios.get('http://localhost:4001/book');
+  // Axios API call to fetch data from auth/book endpoint
+  const response = await axios.get(`${AUTH_URL}/book`);
         
         // Store the response in state
         setBook(response.data);

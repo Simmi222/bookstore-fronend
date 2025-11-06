@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 import { useAuth } from '../context/AuthContext'
 
 function Login() {
@@ -23,8 +25,8 @@ function Login() {
     
     if (formData.email && formData.password) {
       try {
-        // Send POST request to http://localhost:5001/user/login
-        const response = await axios.post('http://localhost:5001/user/login', {
+  // Send POST request to backend login
+  const response = await axios.post(`${API_URL}/user/login`, {
           email: formData.email,
           password: formData.password
         });

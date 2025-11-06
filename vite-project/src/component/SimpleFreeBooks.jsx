@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const AUTH_URL = import.meta.env.VITE_AUTH_URL || import.meta.env.VITE_API_URL || 'http://localhost:4001';
+
 const SimpleFreeBooks = () => {
   // State to store filtered free books
   const [freeBooks, setFreeBooks] = useState([]);
@@ -9,8 +11,8 @@ const SimpleFreeBooks = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch all book data using Axios
-        const response = await axios.get('http://localhost:4001/book');
+  // Fetch all book data using Axios
+  const response = await axios.get(`${AUTH_URL}/book`);
         const allBooks = response.data.data || response.data;
         
         // Filter the data to only include books where category is "free"

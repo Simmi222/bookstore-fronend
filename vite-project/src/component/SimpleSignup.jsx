@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const AUTH_URL = import.meta.env.VITE_AUTH_URL || import.meta.env.VITE_API_URL || 'http://localhost:4001';
+
 const SimpleSignup = () => {
   // useState for form fields
   const [fullName, setFullName] = useState('');
@@ -14,9 +16,9 @@ const SimpleSignup = () => {
     e.preventDefault();
 
     try {
-      // Send POST request to http://localhost:4001/user/signup
-      // Send data as JSON
-      const response = await axios.post('http://localhost:4001/user/signup', {
+  // Send POST request to signup endpoint
+  // Send data as JSON
+  const response = await axios.post(`${AUTH_URL}/user/signup`, {
         fullName: fullName,
         email: email,
         password: password
